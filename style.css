@@ -20,7 +20,13 @@ header {
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .card {
+display: none;
+}
+
+
+.back-card {
   background-color: black;
   height: 250px;
   width: 150px;
@@ -28,10 +34,16 @@ header {
   border-radius: 20px;
   margin: 20px;
 }
+.face-card {
+  background-color: rgb(205, 181, 181);
+  height: 250px;
+  width: 150px;
+  border: 1px white solid;
+  border-radius: 20px;
+  margin: 20px;
+  display: none;
+}
 
 @media only screen and (min-width: 768px) {
-.card{
-  display: flex;
-  
-}
+
   }
