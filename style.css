@@ -5,6 +5,7 @@ p,
 div {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 header {
   display: flex;
@@ -14,28 +15,47 @@ header {
 
 .card-container {
   display: flex;
-  justify-content: center;
+  margin: auto;
   flex-wrap: wrap;
+  width: 700px;
+  height: 700px;
+  perspective: 1000px;
 }
 .card {
-  display: none;
+  display: flex;
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  margin: 5px;
+  border-radius: 50px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
-.back-card {
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+.card.flip {
+  transform: rotateY(180deg);
+}
+/* .card:hover {
+  transform: rotateY(180deg);
+} */
+.back-card,
+.face-card {
+  position: absolute;
   background-color: black;
   height: 250px;
   width: 150px;
   border: 1px white solid;
-  border-radius: 20px;
+  border-radius: 10 px;
   margin: 20px;
+  backface-visibility: hidden;
+  background-size: 100%;
 }
-.face-card {
-  background-color: rgb(205, 181, 181);
-  height: 250px;
-  width: 150px;
-  border: 1px white solid;
-  border-radius: 20px;
-  margin: 20px;
-  display: none;
+.back-card {
+  transform: rotateY(180deg);
 }
 @media only screen and (min-width: 768px) {
 }

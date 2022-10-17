@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-
   </head>
   <body>
     <header>
       <h1>Flip a card</h1>
+
       <div class="button-container">
-        <button>Start</button>
-        <button>Reset</button>
+        <button id="startStop" onclick="startStop()">Start</button>
+        <div id="timer-display">00:00</div>
+        <button id="reset" onclick="reset()">Reset</button>
       </div>
     </header>
+
     <main class="card-container"></main>
     <script src="/script.js"></script>
   </body>
