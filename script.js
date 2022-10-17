@@ -4,9 +4,9 @@ const startTimer = document.querySelector(".start");
 const timer = document.querySelector(".timer");
 let firstCard, secondCard;
 let chosenCards = [];
+let matchedCards = [];
 let minute = 0;
 let second = 0;
-let millisecond = 0;
 let displaySecond = 0;
 let displayMinute = 0;
 let interval = null;
@@ -79,24 +79,25 @@ const buildDeck = () => {
     cardContainer.append(newCard);
     newCard.append(faceCard);
     newCard.append(backCard);
-    // cardContainer.style.opacity = "0";
+    cardContainer.style.opacity = "0";
   }
 };
 buildDeck();
 
+let counter = 0;
 //match cards
 const checkForMatch = () => {
   firstCard = chosenCards[0];
   secondCard = chosenCards[1];
-  console.log(firstCard);
-  console.log(secondCard);
   const nodeList = document.querySelectorAll(".flip");
   if (firstCard === secondCard) {
     nodeList.forEach((node) => {
       node.style.opacity = "0";
+      console.log(matchedCards);
     });
     console.log("Match");
     chosenCards = [];
+    counter++;
   } else {
     nodeList.forEach((node) => {
       node.classList.remove("flip");
@@ -104,18 +105,23 @@ const checkForMatch = () => {
     chosenCards = [];
     console.log("not a match");
   }
+  console.log(counter);
+  if (counter === 4) {
+    let question = prompt(
+      "You are psychic, I will grant you an answer to a single question"
+    );
+    console.log(question);
+  }
 };
 
 // //flip card
 cardContainer.addEventListener("click", (e) => {
-  console.log(e.target);
   if (e.target.classList.contains("face-card")) {
     let cardName = e.target.getAttribute("data-name");
     e.target.parentNode.classList.add("flip");
     chosenCards.push(cardName);
-    console.log(chosenCards);
     if (chosenCards.length === 2) {
-      setTimeout(checkForMatch, 1000);
+      setTimeout(checkForMatch, 500);
     }
   }
 });
@@ -124,13 +130,11 @@ cardContainer.addEventListener("click", (e) => {
 
 const stopwatch = () => {
   second++;
-  if (millisecond / 1000 === 1) {
-    if (second / 60 === 1) {
-      second = 0;
-      minute++;
-      if (minute / 60 === 1) {
-        minute = 0;
-      }
+  if (second / 60 === 1) {
+    second = 0;
+    minute++;
+    if (minute / 60 === 1) {
+      minute = 0;
     }
   }
   if (second < 10) {
@@ -165,11 +169,23 @@ const reset = () => {
   second = 0;
   minute = 0;
   hour = 0;
-  document.getElementById("timer-display").innerHTML = "00:00:00";
+  document.getElementById("timer-display").innerHTML = "00:00";
   document.getElementById("startStop").innerHTML = "Start";
   stopwatchStatus = "stopped";
   cardContainer.innerHTML = "";
   shuffle(arrayOfCards);
   buildDeck();
-  console.log(arrayOfCards);
+  counter = 0;
+};
+
+answer = [
+  "Yes",
+  "No",
+  "Maybe",
+  "Concentrate and ask again",
+  "Very Doubtful",
+  "Most likely",
+];
+const eightBall = () => {
+  let ans = Math.floor(Math.random() * answer.length + 1);
 };

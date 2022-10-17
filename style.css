@@ -6,16 +6,49 @@ div {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Amatic SC", cursive;
+}
+body {
+  background: rgb(247, 185, 106);
+  background: radial-gradient(
+    circle,
+    rgba(247, 185, 106, 1) 0%,
+    rgba(1, 18, 18, 1) 100%
+  );
+}
+main {
+  display: flex;
+  justify-content: center;
 }
 header {
+  background-image: url(/assets/header-bg.jpeg);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
-
+h1 {
+  color: #c99c62;
+  font-size: 60px;
+}
+.button-container {
+  display: flex;
+}
+button {
+  background-color: #c99c62;
+  color: black;
+  font-family: "Amatic SC", cursive;
+  font-size: 24px;
+  margin: 0 70px;
+}
+#timer-display {
+  font-size: 32px;
+  color: #c99c62;
+}
 .card-container {
   display: flex;
-  margin: auto;
+  align-content: flex-start;
+  padding-bottom: 100px;
   flex-wrap: wrap;
   width: 700px;
   height: 700px;
@@ -25,8 +58,7 @@ header {
   display: flex;
   width: calc(25% - 10px);
   height: calc(33.333% - 10px);
-  margin: 5px;
-  border-radius: 50px;
+  margin: 5px 5px 100px 5px;
   position: relative;
   transform: scale(1);
   transform-style: preserve-3d;
@@ -39,16 +71,12 @@ header {
 .card.flip {
   transform: rotateY(180deg);
 }
-/* .card:hover {
-  transform: rotateY(180deg);
-} */
 .back-card,
 .face-card {
   position: absolute;
   background-color: black;
   height: 250px;
   width: 150px;
-  border: 1px white solid;
   border-radius: 10 px;
   margin: 20px;
   backface-visibility: hidden;
@@ -57,5 +85,22 @@ header {
 .back-card {
   transform: rotateY(180deg);
 }
+prompt {
+  background-color: red;
+}
 @media only screen and (min-width: 768px) {
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  .button-container {
+    border: 3px solid #c99c62;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  button {
+    margin: 0 20px;
+  }
 }
