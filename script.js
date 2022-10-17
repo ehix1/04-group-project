@@ -111,9 +111,29 @@ const checkForMatch = () => {
       "You are psychic, I will grant you an answer to a single question"
     );
     console.log(question);
+
+    const predictTheFuture = (question) => {
+      const answer = [
+        "Yes",
+        "No",
+        "Maybe",
+        "Meditate and ask again",
+        "Honestly, probs not",
+        "For sure, dude",
+        "Shhhhh, can't tell you",
+        "As I see it, yes",
+        "Reply hazy, try again",
+        "Better not tell you now",
+        "Google it",
+        "Tis a secret",
+      ];
+      let randomAns = Math.floor(Math.random() * answer.length);
+      return answer[randomAns];
+    };
+    console.log(predictTheFuture());
+    alert(predictTheFuture());
   }
 };
-
 // //flip card
 cardContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("face-card")) {
@@ -176,16 +196,4 @@ const reset = () => {
   shuffle(arrayOfCards);
   buildDeck();
   counter = 0;
-};
-
-answer = [
-  "Yes",
-  "No",
-  "Maybe",
-  "Concentrate and ask again",
-  "Very Doubtful",
-  "Most likely",
-];
-const eightBall = () => {
-  let ans = Math.floor(Math.random() * answer.length + 1);
 };
