@@ -123,6 +123,7 @@ p {
   padding: 50px;
   border: 5px black solid;
   border-radius: 10px;
+  box-shadow: 5px 5px 5px black;
 }
 form {
   display: flex;
@@ -145,6 +146,28 @@ input {
   color: white;
   font-size: 32px;
   background-image: url(/assets/button-bg.jpeg);
+}
+.playAgain {
+  background-color: #5c5c5c;
+  color: white;
+  font-size: 40px;
+  text-shadow: 5px 5px 20px magenta, 10px 10px 50px blue, 5px 5px 20px purple;
+}
+.playAgainBtn {
+  background-size: cover;
+  text-shadow: 5px 5px 20px magenta, 10px 10px 50px blue, 5px 5px 20px purple;
+  font-size: 24px;
+  text-align: center;
+  color: white;
+  width: 150px;
+  height: 150px;
+  border: black 1px solid;
+  border-radius: 50%;
+  margin: 20px;
+}
+.playAgainBtn:hover {
+  background-size: cover;
+  box-shadow: 0 0 20px 10px #a8fff1;
 }
 @media only screen and (min-width: 768px) {
   header {

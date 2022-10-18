@@ -4,7 +4,8 @@ const startTimer = document.querySelector(".start");
 const timer = document.querySelector(".timer");
 const resetButton = document.querySelector("#reset");
 const question = document.querySelector(".prompt");
-question.style.display = "none";
+const form = document.querySelector("form");
+let counter = 0;
 let firstCard, secondCard;
 let chosenCards = [];
 let matchedCards = [];
@@ -15,6 +16,7 @@ let displayMinute = 0;
 let interval = null;
 let stopwatchStatus = "stopped";
 let submitButton = document.querySelector(".submit");
+question.style.display = "none";
 
 //array of objects
 const arrayOfCards = [
@@ -68,6 +70,63 @@ const shuffle = (array) => {
 shuffle(arrayOfCards);
 console.log(arrayOfCards);
 
+//reset function
+const reset = () => {
+  clearInterval(interval);
+  second = 0;
+  minute = 0;
+  hour = 0;
+  document.getElementById("timer-display").innerHTML = "00:00";
+  document.getElementById("startStop").innerHTML = "Start";
+  stopwatchStatus = "stopped";
+  cardContainer.innerHTML = "";
+  shuffle(arrayOfCards);
+  buildDeck();
+  counter = 0;
+  question.style.display = "none";
+  question.innerHTML = `<p>You are psychic! I will grant you the answer to a single question</p>
+  <form>
+    <input type="text" id="text" />
+    <button class="submit">Predict the future</button>
+  </form>`;
+  const newForm = document.querySelector("form");
+  newForm.addEventListener("submit", predictionSubmitHandler);
+  question.classList.remove("playAgain");
+};
+
+//question answer
+const predictionSubmitHandler = (e) => {
+  const predictTheFuture = (question) => {
+    const answer = [
+      "Yes",
+      "No",
+      "Maybe",
+      "Meditate and ask again",
+      "Honestly, probs not",
+      "For sure, dude",
+      "Shhhhh, can't tell you",
+      "As I see it, yes",
+      "Reply hazy, try again",
+      "Better not tell you now",
+      "Google it",
+      "Tis a secret",
+    ];
+    let randomAns = Math.floor(Math.random() * answer.length);
+    return answer[randomAns];
+  };
+  console.log(predictTheFuture());
+  const playAgainButton = document.createElement("button");
+  question.innerHTML = `<p>${predictTheFuture()}</p>`;
+  question.classList.add("playAgain");
+  playAgainButton.classList.add("playAgainBtn");
+  playAgainButton.textContent = "Play Again?";
+  playAgainButton.style.backgroundImage = "url(/assets/crystalball.png)";
+  question.append(playAgainButton);
+  playAgainButton.addEventListener("click", (e) => {
+    reset();
+  });
+};
+
 //card container
 const buildDeck = () => {
   for (let i = 0; i < arrayOfCards.length; i++) {
@@ -78,7 +137,7 @@ const buildDeck = () => {
     backCard.classList.add("back-card");
     faceCard.classList.add("face-card");
     faceCard.setAttribute("data-name", arrayOfCards[i].name);
-    faceCard.style.backgroundImage = "url(/assets/Tarot-back.webp)";
+    faceCard.style.backgroundImage = "url(/assets/card-back.jpeg)";
     backCard.style.backgroundImage = arrayOfCards[i].img;
     cardContainer.append(newCard);
     newCard.append(faceCard);
@@ -89,7 +148,6 @@ const buildDeck = () => {
 buildDeck();
 
 //match cards
-let counter = 0;
 const checkForMatch = () => {
   firstCard = chosenCards[0];
   secondCard = chosenCards[1];
@@ -110,37 +168,13 @@ const checkForMatch = () => {
   }
   console.log(counter);
   if (counter === 4) {
+    clearInterval(interval);
     question.style.display = "block";
-    submitButton.addEventListener("click", (e) => {
-      const predictTheFuture = (question) => {
-        const answer = [
-          "Yes",
-          "No",
-          "Maybe",
-          "Meditate and ask again",
-          "Honestly, probs not",
-          "For sure, dude",
-          "Shhhhh, can't tell you",
-          "As I see it, yes",
-          "Reply hazy, try again",
-          "Better not tell you now",
-          "Google it",
-          "Tis a secret",
-        ];
-        let randomAns = Math.floor(Math.random() * answer.length);
-        return answer[randomAns];
-      };
-      console.log(predictTheFuture());
-      question.innerHTML = predictTheFuture();
-      // alert(predictTheFuture());
-      if (predictTheFuture) {
-        reset();
-      }
-    });
+    submitButton.addEventListener("click", predictionSubmitHandler);
   }
 };
 
-// //flip card
+//flip card
 cardContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("face-card")) {
     let cardName = e.target.getAttribute("data-name");
@@ -188,21 +222,4 @@ const startStop = () => {
     document.getElementById("startStop").innerHTML = "Start";
     stopwatchStatus = "stopped";
   }
-};
-
-const reset = () => {
-  clearInterval(interval);
-  second = 0;
-  minute = 0;
-  hour = 0;
-  document.getElementById("timer-display").innerHTML = "00:00";
-  document.getElementById("startStop").innerHTML = "Start";
-  stopwatchStatus = "stopped";
-  cardContainer.innerHTML = "";
-  shuffle(arrayOfCards);
-  buildDeck();
-  counter = 0;
-  resetButton.addEventListener("click", (e) => {
-    question.style.display = "none";
-  });
 };
