@@ -9,11 +9,11 @@ div {
   font-family: "Amatic SC", cursive;
 }
 body {
-  background: rgb(247, 185, 106);
+  background: rgb(97, 64, 81);
   background: radial-gradient(
     circle,
-    rgba(247, 185, 106, 1) 0%,
-    rgba(1, 18, 18, 1) 100%
+    rgba(97, 64, 81, 1) 0%,
+    rgba(47, 3, 26, 1) 100%
   );
 }
 main {
@@ -26,6 +26,7 @@ header {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  border-bottom: 1px double #e3dac9;
 }
 h1 {
   color: #c99c62;
@@ -50,7 +51,7 @@ button {
 .card-container {
   display: flex;
   align-content: flex-start;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   flex-wrap: wrap;
   width: 700px;
   height: 700px;
@@ -89,6 +90,14 @@ button {
 }
 prompt {
   background-color: red;
+}
+footer {
+  position: relative;
+  background-image: url(/assets/header-bg.jpeg);
+  border-top: 1px double #e3dac9;
+}
+p {
+  opacity: 0;
 }
 @media only screen and (min-width: 768px) {
   header {

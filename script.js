@@ -108,7 +108,7 @@ const checkForMatch = () => {
   console.log(counter);
   if (counter === 4) {
     let question = prompt(
-      "You are psychic, I will grant you an answer to a single question"
+      "You are psychic! I will grant you the answer to a single question"
     );
     console.log(question);
 
