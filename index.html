@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" type="image/x-icon" href="/assets/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/icon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap"
       rel="stylesheet"
@@ -19,21 +19,24 @@
       <h1>Flip a card</h1>
 
       <div class="button-container">
-        <button id="startStop" onclick="startStop()">Start</button>
+        <button class="button" id="startStop" onclick="startStop()">
+          Start
+        </button>
         <div id="timer-display">00:00</div>
-        <button id="reset" onclick="reset()">Reset</button>
+        <button class="button" id="reset" onclick="reset()">Reset</button>
       </div>
     </header>
 
-    <main><section class="card-container"></section></main>
-    <footer>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque vitae
-        quia quod! Repudiandae ut omnis ducimus dolorum consectetur architecto,
-        error laboriosam et impedit eum excepturi. Cupiditate reiciendis fugit
-        voluptatum aliquid.
-      </p>
-    </footer>
+    <main>
+      <section class="card-container"></section>
+      <div class="prompt">
+        <p>You are psychic! I will grant you the answer to a single question</p>
+        <form>
+          <input type="text" id="text" />
+          <button class="submit">Predict the future</button>
+        </form>
+      </div>
+    </main>
     <script src="/script.js"></script>
   </body>
 </html>

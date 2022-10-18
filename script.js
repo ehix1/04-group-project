@@ -2,6 +2,9 @@
 const cardContainer = document.querySelector(".card-container");
 const startTimer = document.querySelector(".start");
 const timer = document.querySelector(".timer");
+const resetButton = document.querySelector("#reset");
+const question = document.querySelector(".prompt");
+question.style.display = "none";
 let firstCard, secondCard;
 let chosenCards = [];
 let matchedCards = [];
@@ -11,6 +14,7 @@ let displaySecond = 0;
 let displayMinute = 0;
 let interval = null;
 let stopwatchStatus = "stopped";
+let submitButton = document.querySelector(".submit");
 
 //array of objects
 const arrayOfCards = [
@@ -84,8 +88,8 @@ const buildDeck = () => {
 };
 buildDeck();
 
-let counter = 0;
 //match cards
+let counter = 0;
 const checkForMatch = () => {
   firstCard = chosenCards[0];
   secondCard = chosenCards[1];
@@ -93,7 +97,6 @@ const checkForMatch = () => {
   if (firstCard === secondCard) {
     nodeList.forEach((node) => {
       node.style.opacity = "0";
-      console.log(matchedCards);
     });
     console.log("Match");
     chosenCards = [];
@@ -106,34 +109,37 @@ const checkForMatch = () => {
     console.log("not a match");
   }
   console.log(counter);
-  if (counter === 4) {
-    let question = prompt(
-      "You are psychic! I will grant you the answer to a single question"
-    );
-    console.log(question);
-
-    const predictTheFuture = (question) => {
-      const answer = [
-        "Yes",
-        "No",
-        "Maybe",
-        "Meditate and ask again",
-        "Honestly, probs not",
-        "For sure, dude",
-        "Shhhhh, can't tell you",
-        "As I see it, yes",
-        "Reply hazy, try again",
-        "Better not tell you now",
-        "Google it",
-        "Tis a secret",
-      ];
-      let randomAns = Math.floor(Math.random() * answer.length);
-      return answer[randomAns];
-    };
-    console.log(predictTheFuture());
-    alert(predictTheFuture());
+  if (counter === 1) {
+    question.style.display = "block";
+    submitButton.addEventListener("click", (e) => {
+      const predictTheFuture = (question) => {
+        const answer = [
+          "Yes",
+          "No",
+          "Maybe",
+          "Meditate and ask again",
+          "Honestly, probs not",
+          "For sure, dude",
+          "Shhhhh, can't tell you",
+          "As I see it, yes",
+          "Reply hazy, try again",
+          "Better not tell you now",
+          "Google it",
+          "Tis a secret",
+        ];
+        let randomAns = Math.floor(Math.random() * answer.length);
+        return answer[randomAns];
+      };
+      console.log(predictTheFuture());
+      question.innerHTML = predictTheFuture();
+      // alert(predictTheFuture());
+      if (predictTheFuture) {
+        reset();
+      }
+    });
   }
 };
+
 // //flip card
 cardContainer.addEventListener("click", (e) => {
   if (e.target.classList.contains("face-card")) {
@@ -147,7 +153,6 @@ cardContainer.addEventListener("click", (e) => {
 });
 
 //timer
-
 const stopwatch = () => {
   second++;
   if (second / 60 === 1) {
@@ -177,6 +182,7 @@ const startStop = () => {
     document.getElementById("startStop").innerHTML = "Stop";
     stopwatchStatus = "started";
     cardContainer.style.opacity = "100";
+    question.style.display = "none";
   } else {
     clearInterval(interval);
     document.getElementById("startStop").innerHTML = "Start";
@@ -196,4 +202,7 @@ const reset = () => {
   shuffle(arrayOfCards);
   buildDeck();
   counter = 0;
+  resetButton.addEventListener("click", (e) => {
+    question.style.display = "none";
+  });
 };
