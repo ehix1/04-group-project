@@ -116,7 +116,7 @@ p {
   font-size: 32px;
   position: absolute;
   width: 500px;
-  height: 300px;
+  height: 400px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -150,11 +150,10 @@ input {
 .playAgain {
   background-color: #5c5c5c;
   color: white;
-  font-size: 40px;
   text-shadow: 5px 5px 20px magenta, 10px 10px 50px blue, 5px 5px 20px purple;
   animation-name: textglow;
   animation-direction: alternate;
-  animation-duration: 1s;
+  animation-duration: 2s;
   animation-timing-function: linear;
   animation-play-state: running;
   animation-iteration-count: infinite;
@@ -163,9 +162,11 @@ input {
   from {
     text-shadow: 5px 5px 20px magenta, 10px 10px 50px #1d1ce5,
       5px 5px 20px white;
+    font-size: 40px;
   }
   to {
     text-shadow: 5px 5px 20px #ecc5fb, 10px 10px 50px blue;
+    font-size: 45px;
   }
 }
 .playAgainBtn {
@@ -178,7 +179,7 @@ input {
   height: 150px;
   border: black 1px solid;
   border-radius: 50%;
-  margin: 20px;
+  margin: 50px;
   box-shadow: 0 0 20px 10px #a8fff1;
   animation-name: glow;
   animation-direction: alternate;
@@ -190,9 +191,13 @@ input {
 @keyframes glow {
   from {
     box-shadow: 0 0 20px 10px #c47aff;
+    width: 150px;
+    height: 150px;
   }
   to {
     box-shadow: 0 0 20px 10px #1d1ce5;
+    width: 145px;
+    height: 145px;
   }
 }
 .playAgainBtn:hover {
