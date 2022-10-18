@@ -109,7 +109,7 @@ const checkForMatch = () => {
     console.log("not a match");
   }
   console.log(counter);
-  if (counter === 1) {
+  if (counter === 4) {
     question.style.display = "block";
     submitButton.addEventListener("click", (e) => {
       const predictTheFuture = (question) => {
