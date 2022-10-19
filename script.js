@@ -126,9 +126,11 @@ const predictionSubmitHandler = (e) => {
   buttonText.classList.add("text");
   buttonText.innerText = "Play Again?";
   setTimeout(() => {
-    buttonText.classList.add("fade-in");
     predictionText.classList.add("fade-in");
-  }, 1000);
+  }, 600);
+  setTimeout(() => {
+    buttonText.classList.add("fade-in");
+  }, 1300);
   playAgainButton.style.backgroundImage = "url(/assets/crystalball.png)";
   question.append(playAgainButton);
   playAgainButton.append(buttonText);
@@ -177,7 +179,7 @@ const checkForMatch = () => {
     console.log("not a match");
   }
   console.log(counter);
-  if (counter === 4) {
+  if (counter === 1) {
     clearInterval(interval);
     question.style.display = "block";
     submitButton.addEventListener("click", predictionSubmitHandler);
