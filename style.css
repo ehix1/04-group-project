@@ -203,6 +203,20 @@ input {
 .playAgainBtn:hover {
   background-size: cover;
 }
+.text {
+  color: white;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 2000ms;
+}
+.prediction-text {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 2000ms;
+}
+.fade-in {
+  opacity: 1;
+}
 @media only screen and (min-width: 768px) {
   header {
     display: flex;

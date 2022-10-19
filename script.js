@@ -16,6 +16,7 @@ let displayMinute = 0;
 let interval = null;
 let stopwatchStatus = "stopped";
 let submitButton = document.querySelector(".submit");
+let predictionText;
 question.style.display = "none";
 
 //array of objects
@@ -116,12 +117,21 @@ const predictionSubmitHandler = (e) => {
   };
   console.log(predictTheFuture());
   const playAgainButton = document.createElement("button");
-  question.innerHTML = `<p>${predictTheFuture()}</p>`;
+  question.innerHTML = `<p class="prediction-text">${predictTheFuture()}</p>`;
+  predictionText = document.querySelector(".prediction-text");
   question.classList.add("playAgain");
+  console.log(predictionText);
   playAgainButton.classList.add("playAgainBtn");
-  playAgainButton.textContent = "Play Again?";
+  const buttonText = document.createElement("p");
+  buttonText.classList.add("text");
+  buttonText.innerText = "Play Again?";
+  setTimeout(() => {
+    buttonText.classList.add("fade-in");
+    predictionText.classList.add("fade-in");
+  }, 1000);
   playAgainButton.style.backgroundImage = "url(/assets/crystalball.png)";
   question.append(playAgainButton);
+  playAgainButton.append(buttonText);
   playAgainButton.addEventListener("click", (e) => {
     reset();
   });
